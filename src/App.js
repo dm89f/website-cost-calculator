@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import WebsiteDesignCalulator from "./components/WebsiteDesignCalulator/WebsiteDesignCalulator";
 
 function App() {
+
+  // console.log(useSelector((state)=>(state)))
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="bg-gray-700 px-10 md:px-48 py-10 ">
+      <header className="" >
+        <h3 className="text-yellow-500 text-2xl font-bold"> Website Design Calculator </h3>
       </header>
+      <main className="h-screen">
+        <WebsiteDesignCalulator/>
+      </main>
+      <footer>
+        <p className="">
+          Built By Dileep B C
+        </p>
+      </footer>
     </div>
   );
 }
