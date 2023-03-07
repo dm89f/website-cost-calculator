@@ -1,11 +1,12 @@
 import React from 'react'
 import PageOption from './PageOption'
-import { useDispatch } from 'react-redux'
-import { incrementPageFunc, decrementPageFunc } from '../../../features/customWebsite/customWebsite'
+import { useDispatch, useSelector } from 'react-redux'
+import { incrementPageFunc, decrementPageFunc, getPageCost } from '../../../features/customWebsite/customWebsite'
 
 function PageRow({page}) {
 
   let dispatch = useDispatch();
+  let pageCost = useSelector( (state)=>(getPageCost(state, page.name)) );
 
   function handleInc(feature){
     // console.log( 'incrementing',page.name, feature )
@@ -45,7 +46,7 @@ function PageRow({page}) {
           handleDec={handleDec} handleInc={handleInc} 
         />
       </td>
-      <td>$ 200</td>
+      <td>$ {pageCost}</td>
     </tr>
   )
 }
