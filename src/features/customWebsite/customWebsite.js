@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {featuresCost} from '../../constants/websiteFeaturesCost'
+import {calculateCost} from './utils/utils'
 
 const initialState={
   pageDesignCost:0,
@@ -7,14 +7,14 @@ const initialState={
   othersCost:0,
   totalCost:0,
   pages:[ 
-    { name:'Home', Design:'none', interactAnim:'none', integration:'none' },
-    { name:'Service', Design:'none', interactAnim:'none', integration:'none' },
-    { name:'About Us', Design:'none', interactAnim:'none', integration:'none' },
-    { name:'Partners', Design:'none', interactAnim:'none', integration:'none' },
-    { name:'Contact Us', Design:'none', interactAnim:'none', integration:'none' },
+    { name:'Home', Design:0, interactAnim:0, integration:0 },
+    { name:'Service', Design:0, interactAnim:0, integration:0 },
+    { name:'About Us', Design:0, interactAnim:0, integration:0 },
+    { name:'Partners', Design:0, interactAnim:0, integration:0 },
+    { name:'Contact Us', Design:0, interactAnim:0, integration:0 },
 
   ]
-}
+} 
 
 // Example structure of customizeWebsiteSlice state
 /*  
@@ -36,19 +36,47 @@ const initialState={
     complex
 */
 
-
-
 export const customizeWebsiteSlice = createSlice({
   name:'customWebsite',
   initialState,
   reducers:{
     decrementPageFunc(state, action){
-      console.log(action.payload)
-      // const { pageName, feature } = action.payload;
+      const { pageName, feature } = action.payload;
+      let updPage = state.pages.find( (page)=>(page.name === pageName) )
+      
+      if( updPage[feature] == 0 ) return;
+      updPage[feature] -= 1;
+      
+      state.pages = state.pages.map( (page)=>{ 
+        if(page.name === pageName) return updPage;
+        else return page;
+      } );
+
+      console.log(calculateCost(state.pages))
+      
 
     },
     incrementPageFunc(state, action){
-      console.log(action.payload)
+      // console.log(action.payload)
+
+      const { pageName, feature } = action.payload;
+      let updPage = state.pages.find( (page)=>(page.name === pageName) )
+      
+      if( updPage[feature] == 3 ) return;
+      updPage[feature] += 1;
+      
+      state.pages = state.pages.map( (page)=>{ 
+        if(page.name === pageName) return updPage;
+        else return page;
+      } );
+
+      // console.log(calculateCost(state.pages))
+      const res = calculateCost(state.pages);
+
+      state.interactionAnimCost = res.interactionAnimCost;
+      state.othersCost = res.othersCost;
+      state.pageDesignCost = res.pageDesignCost;
+      state.totalCost = res.totalCost;
 
     }
   }
