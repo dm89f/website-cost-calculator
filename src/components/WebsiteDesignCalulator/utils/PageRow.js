@@ -46,7 +46,11 @@ function PageRow({page}) {
           handleDec={handleDec} handleInc={handleInc} 
         />
       </td>
-      <td>$ {pageCost}</td>
+      <td>
+        <div className='flex'>
+          <p className='mx-auto font-bold text-lg'>$ {pageCost}</p>
+        </div>
+      </td>
     </tr>
   )
 }

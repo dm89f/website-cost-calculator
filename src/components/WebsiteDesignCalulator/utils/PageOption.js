@@ -3,16 +3,21 @@ import React from 'react'
 function PageOption({handleDec, handleInc, feature}) {
 
   let featVal = '';
-
+  let bgColor=''
   if( feature.value === 0 ){
     featVal = 'none'
+    bgColor = 'bg-gray-400'
   }else if(feature.value === 1){
     featVal = 'basic';
+    bgColor = 'bg-green-400'
+
   }else if(feature.value === 2){
     featVal = 'Advanced';
+    bgColor = 'bg-yellow-400'
+
   }else if( feature.value === 3 ){
     featVal = 'Complex';
-
+    bgColor = 'bg-red-400'
   }
 
   return (
@@ -21,7 +26,7 @@ function PageOption({handleDec, handleInc, feature}) {
         className='px-3 text-2xl'
         onClick={()=>{handleDec(feature.name)}}
       >-</button>
-      <span className='rounded-full bg-red-400 text-white px-3 py-1'>{featVal}</span>
+      <span className={` transition rounded-full ${bgColor} text-white px-3 py-1`}>{featVal}</span>
       <button 
         className='px-3 text-2xl'
         onClick={()=>{handleInc(feature.name)}}
