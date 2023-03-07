@@ -1,8 +1,22 @@
 import React from 'react'
 import PageOption from './PageOption'
+import { useDispatch } from 'react-redux'
+import { incrementPageFunc, decrementPageFunc } from '../../../features/customWebsite/customWebsite'
 
 function PageRow({page}) {
 
+  let dispatch = useDispatch();
+
+  function handleInc(feature){
+    // console.log( 'incrementing',page.name, feature )
+    dispatch(incrementPageFunc({pageName:page.name, feature}))
+  }
+
+  function handleDec(feature){
+    // console.log( 'decrementing',page.name, feature )
+    dispatch(decrementPageFunc({pageName:page.name, feature}))
+
+  }
 
 
   return (
@@ -14,13 +28,22 @@ function PageRow({page}) {
         </p>
       </td>
       <td>
-        <PageOption design={page.Design} />
+        <PageOption 
+          feature={{name:'Design', value:page.Design}} 
+          handleDec={handleDec} handleInc={handleInc} 
+        />
       </td>
       <td>
-        {page.interactAnim}
+        <PageOption 
+          feature={{name:'interactAnim', value:page.interactAnim}} 
+          handleDec={handleDec} handleInc={handleInc} 
+        />
       </td>
       <td>
-        {page.integration}
+        <PageOption 
+          feature={{name:'integration', value:page.integration}} 
+          handleDec={handleDec} handleInc={handleInc} 
+        />
       </td>
       <td>$ 200</td>
     </tr>

@@ -1,12 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import{ getPages } from '../../features/customWebsite'
+import{ 
+  getPages, getTotalCost, 
+  getPageDesignCost, 
+  getInteractionAnimCost, getOthersCost
+} from '../../features/customWebsite/customWebsite'
 import PageRow from './utils/PageRow';
 
 function WebsiteDesignCalulator() {
 
   let pages = useSelector(getPages);
-
+  let pageDesignCost = useSelector(getPageDesignCost)
+  let interactionAnimCost = useSelector(getInteractionAnimCost)
+  let othersCost = useSelector(getOthersCost)
+  let totalCost = useSelector(getTotalCost)
 
   return (
     <section className='mt-10 w-full p-5 bg-sgreen rounded-md'>
@@ -15,25 +22,25 @@ function WebsiteDesignCalulator() {
           <tr>
             <th className='py-5'>
               <div className='flex-col'>
-                <h1 className='text-4xl'>5</h1>
+                <h1 className='text-4xl'>{pages.length}</h1>
                 <h2>  Pages</h2>
               </div>
             </th>
             <th className='py-5'>
-              <h2 className='text-xl md:text-3xl'>$300</h2>
+              <h2 className='text-xl md:text-3xl'>$ {pageDesignCost}</h2>
               <span className='font-light text-sm md:text-md'>Page Design</span>
             </th>
             <th className='py-5'>
-              <h2 className='text-xl md:text-3xl'>$200</h2>
+              <h2 className='text-xl md:text-3xl'>$ {interactionAnimCost}</h2>
               <span className='font-light text-sm md:text-md'>interactions & Animations</span>
             </th>
             <th className='py-5'>
-              <h2 className='text-xl md:text-3xl'>$300</h2>
+              <h2 className='text-xl md:text-3xl'>$ {othersCost}</h2>
               <span className='font-light text-sm md:text-md'>CMS / Dynamic Data / Integrations</span>
             </th>
             <th className='py-5 flex-col'>
               <span className='text-sm' >Sub Total</span>
-              <h1 className='text-4xl'> $800 </h1>
+              <h1 className='text-4xl'> $ {totalCost} </h1>
             </th>
           </tr>
         </thead>
