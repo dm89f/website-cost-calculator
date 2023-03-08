@@ -1,10 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import WebsiteDesignCalulator from "./components/WebsiteDesignCalulator/WebsiteDesignCalulator";
 
 function App() {
 
-  // console.log(useSelector((state)=>(state)))
 
   return (
     <div className="bg-gray-700 px-10 md:px-48 py-10 ">

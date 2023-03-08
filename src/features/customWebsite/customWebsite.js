@@ -44,7 +44,7 @@ export const customizeWebsiteSlice = createSlice({
       const { pageName, feature } = action.payload;
       let updPage = state.pages.find( (page)=>(page.name === pageName) )
       
-      if( updPage[feature] == 0 ) return;
+      if( updPage[feature] === 0 ) return;
       updPage[feature] -= 1;
       
       if(updPage[feature] === 0){
@@ -74,7 +74,7 @@ export const customizeWebsiteSlice = createSlice({
       const { pageName, feature } = action.payload;
       let updPage = state.pages.find( (page)=>(page.name === pageName) )
       
-      if( updPage[feature] == 3 ) return;
+      if( updPage[feature] === 3 ) return;
       updPage[feature] += 1;
       
       if(updPage[feature] >= 1){
